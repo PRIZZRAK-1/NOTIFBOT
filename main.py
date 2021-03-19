@@ -6,19 +6,19 @@ import configparser
 
 # creating funcs
 
-async def CONFIGS(config_name, section, key):
+def CONFIGS(config_name, section, key):
     config = configparser.ConfigParser()
     config.read(config_name)
     return config[section][key]
 
 # creating vars
 
-BOT = Bot((await CONFIGS('config.ini', 'Cbcon', 'Token')))
+BOT = Bot(CONFIGS('config.ini', 'Cbcon', 'Token'))
 
 # job cycle
 @BOT.on.message()
 async def HANDLER_MESSAGE(msg: Message):
-    await msg.answer(user_id=487334215, message=f'[ВАЖНО]\n[Пользователь|{msg.from_id}] написал сообщение!')
+    await msg.answer(user_id=487334215, message=f'[ВАЖНО]\n[id{msg.from_id}|Пользователь] написал сообщение!')
 
 # start
 
